@@ -1,0 +1,27 @@
+body {
+  font-size: 36px;
+}
+
+.blue {
+  text-decoration-line: underline;
+  text-decoration-color: blue;
+  text-decoration-style: wavy;
+}
+
+.bruh {
+  text-decoration-line: underline;
+  text-decoration-color: pink;
+  text-decoration-style: dotted;
+}
+
+.green {
+  text-decoration-line: underline;
+  text-decoration-color: green;
+  text-decoration-style: dashed;
+}
+
+.red {
+  text-decoration-line: underline;
+  text-decoration-color: red;
+  text-decoration-style: double;
+}

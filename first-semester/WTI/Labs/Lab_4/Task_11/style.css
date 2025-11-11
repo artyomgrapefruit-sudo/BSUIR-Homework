@@ -1,0 +1,17 @@
+body {
+  display: grid;
+  grid-template-rows: minmax(10px, 40px) minmax(10px, 40px) minmax(10px, 40px);
+  grid-template-columns: minmax(10px, 60px) minmax(10px, 60px);
+}
+
+div {
+  display: flex;
+  justify-content: center;
+  border: 1px solid blue;
+}
+
+@media (max-width: 1280px) {
+  a{
+    font-size: 30px;
+  }
+}

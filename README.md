@@ -1,3 +1,9 @@
 # BSUIR-Homework
 All my homeworks 
-I think about own branches for every subject
+
+## Subjects:
+### First semester:
+| Course title | Translation | Abbreviation |
+|:------------ |:----------- |:------------:|
+| Веб-технологии в инфокоммуникациях | Web technologies in infocommunications | WTI |
+| Основы алгоритмизации и программирования | Fundamentals of Algorithmization and Programming |
