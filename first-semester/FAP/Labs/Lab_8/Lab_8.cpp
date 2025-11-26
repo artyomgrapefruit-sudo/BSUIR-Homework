@@ -134,15 +134,6 @@ int main () {
       no_one_grade_student_with_letter = false;
     }
     no_one_grade_student = !our_group[curr].is_extent_student() && no_one_grade_student;
-    /*
-      new_n_o| is-ex n_o           
-        0   |   0    0
-        1   |   0    1
-        0   |   1    0
-        0   |   1    1
-
-        !is_ex && n_o
-    */
   }
 
   std::cout << std::endl;
@@ -157,12 +148,12 @@ int main () {
     return 0;
   }
 
-  /* ---For-debug--- */
-  std::cout << "All students:\n";
-  for (size_t curr = 0; curr < n; ++curr) {
-    std::cout << "Student: " << our_group[curr] << std::endl;
-  }
-  /* ---For-debug--- */
+  /* ---For-debugging--- */
+  // std::cout << "All students:\n";
+  // for (size_t curr = 0; curr < n; ++curr) {
+  //   std::cout << "Student: " << our_group[curr] << std::endl;
+  // }
+  /* ---For-debugging--- */
 
   std::cout << "Eeeend" << std::endl;
   return 0;

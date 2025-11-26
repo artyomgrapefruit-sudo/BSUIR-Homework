@@ -1,0 +1,26 @@
+=<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Subtask_1</title>
+  </head>
+  <body>
+    <script>
+      function clock (times) {
+        if (Number(times) < 15)
+          return "Первая";
+        if (Number(times) < 30)
+          return "Вторая";
+        if (Number(times) < 45)
+          return "Третья";
+        return "Четвёртая";
+      }
+
+      let time = new Date();
+      let sec = Number(time.getSeconds());
+
+      
+      alert(clock(sec) + ' четверть минуты' + ' (' + sec + ' секунд)');
+    </script>
+  </body>
+</html>
