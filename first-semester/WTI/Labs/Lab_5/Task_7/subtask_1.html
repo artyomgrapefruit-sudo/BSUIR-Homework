@@ -6,10 +6,26 @@
   </head>
   <body>
     <script>
-      let name = "Артём";
-      for (let i in name) {
-        alert(name[i]);
+      function equal1(n1, n2) {
+        if (Number(n1) == Number(n2))
+          return true;
+        return false;
       }
+
+      function equal2(n1, n2) {
+        var flag = true;
+        for (let i in num1) {
+          if (num1[i] != num2[i]) {
+            flag = false;
+          }
+        }
+        return flag;
+      }
+
+      let num1 = prompt("Введите первое число");
+      let num2 = prompt("Введите второе число");
+
+      alert(equal1(num1, num2) || equal2(num1, num2));
     </script>
   </body>
 </html>

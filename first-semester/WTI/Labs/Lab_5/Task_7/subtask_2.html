@@ -6,12 +6,17 @@
   </head>
   <body>
     <script>
-      let num = '12345';
-      let prod = 1;
-      for (let i in num) {
-        prod *= num[i];
+      function sumbqten(n1, n2) {
+        if (Number(n1) + Number(n2) > 10) {
+          return true;
+        }
+        return false;
       }
-      alert(prod);
+
+      let Number1 = prompt("Введите число 1");
+      let Number2 = prompt("Введите число 2");
+
+      alert(sumbqten(Number1, Number2));
     </script>
   </body>
 </html>

@@ -14,7 +14,11 @@
 */
 #include <iostream>
 
-int32_t true_input () { // Check that input number is number
+int32_t true_input ( int mode = 1) { // Check that input number is number
+  /*
+  mode = 0 -> without 0
+  mode = 1 -> normal mode
+  */
   char input[255];
   bool is_number;
 
@@ -23,7 +27,7 @@ int32_t true_input () { // Check that input number is number
     is_number = true;
     size_t curr = 0;
     for (;input[curr] != '\0'; ++curr) {
-      if (input[curr] > '9' || input[curr] < '0') {
+      if (input[curr] > '9' || input[curr] < '0' || mode == 0 && input[curr] == '0') {
         std::cout << "Incorrect data!\nTrue again:\n";
         is_number = false;
         break;
@@ -35,9 +39,8 @@ int32_t true_input () { // Check that input number is number
 }
 
 struct Student {
-  char surname[255] = {'\0'};
-  char initial_1[255] = {'\0'};
-  char initial_2[255] = {'\0'};
+  bool initial = false;
+  char surname[255] = {'\0'}; // можно переделать на указатели? Но тогда прийдется заполнять всё '\0'
   char date_of_birth[255] = {'\0'};
   char group[255] = {'\0'};
   int32_t grades[4][20] = {-1};
@@ -66,27 +69,22 @@ struct Student {
 };
 
 std::ostream& operator << (std::ostream& os, const Student& student) {
-    return os << student.surname << " " << student.initial_1 << " " << student.initial_2 << " "
-              << student.date_of_birth << " " << student.group << " " << student.average_grade;
+  if (!student.initial) {
+    return os << "Null student";  
+  }
+  return os << student.surname << " " << student.date_of_birth << " "
+            << student.group << " " << student.average_grade;
 }
 
 std::istream& operator >> (std::istream& in, Student& student) {
   char new_surname[255];
-  char new_initial_1[255];
-  char new_initial_2[255];
   char new_date_of_birth[255];
   char new_group[255];
 
-  in >> new_surname >> new_initial_1 >> new_initial_2 >> new_date_of_birth >> new_group;
+  in >> new_surname >> new_date_of_birth >> new_group;
   
   for (size_t curr = 0; new_surname[curr] != '\0'; ++curr) {
     student.surname[curr] = curr[new_surname];
-  }
-  for (size_t curr = 0; new_initial_1[curr] != '\0'; ++curr) {
-    student.initial_1[curr] = curr[new_initial_1];
-  }
-  for (size_t curr = 0; new_initial_2[curr] != '\0'; ++curr) {
-    student.initial_2[curr] = curr[new_initial_2];
   }
   for (size_t curr = 0; new_date_of_birth[curr] != '\0'; ++curr) {
     student.date_of_birth[curr] = curr[new_date_of_birth];
@@ -95,58 +93,190 @@ std::istream& operator >> (std::istream& in, Student& student) {
     student.group[curr] = curr[new_group];
   }
   
+  student.initial = true;
   return in;
 }
 
+bool is_equal (const char* a, const char* b) {
+  size_t i = 0;
+  while (a[i] != '\0' || b[i] != '\0') {
+    if(a[i] != b[i]) {
+      return false;
+    }
+    if(a[i] == b[i] == '\0') {
+      return true;
+    }
+    ++i;
+  }
+  return true;
+}
+
 int main () {
+  char Add[] = {'a', 'd', 'd', '\0', '\0'};
+  char Get[] = {'g', 'e', 't', '\0', '\0'};
+  char Edit[] = {'e', 'd', 'i', 't', '\0'};
+  char Task[] = {'t', 'a', 's', 'k', '\0'};
+  char Exit[] = {'e', 'x', 'i', 't', '\0'};
+  char Help[] = {'h', 'e', 'l', 'p', '\0'};
+  
   size_t n;
   bool no_one_grade_student_with_letter = true;
   bool no_one_grade_student = true;
   const char subjects[4][10] = {"physics", "math", "chemistry", "IT"};
 
-  std::cout << "Write number of student\n";
+  std::cout << "Write number of student: ";
   n = true_input();
 
   Student our_group[n];
-  for (size_t curr = 0; curr < n; ++curr) {
-    std::cout << "Write student №" << curr + 1 << " last name, initials, date of birth and academic group:\n";
 
-    std::cin >> our_group[curr];
-    
-    for (size_t i = 0; i < 4; i++)
-    {
-      std::cout << "Write count of grades in " << subjects[i] << ": ";
-      size_t count_of_grades = true_input();
-      for (size_t curr_grade = 0; curr_grade < count_of_grades; ++curr_grade) {
-        our_group[curr].grades[i][our_group[curr].last[i]++] = true_input();
+  std::cout << "Choose option:\nAdd\nGet\nEdit\nTask\nExit\nIf you need help type help [command] to get instruction\n";
+
+  while (true) {
+    char command[5] = {'\0'};
+    std::cout << "$: ";
+    std::cin >> command;
+    for (size_t i = 0; i < 5; ++i) {
+      if (command[i] != '\0') command[i] |= 0b100000;
+    }
+
+    if (is_equal(command, Help)) {
+      char command_help[5] = {'\0'};
+      std::cin >> command_help;
+      for (size_t i = 0; i < 5; ++i) {
+        if (command_help[i] != '\0') command_help[i] |= 0b100000;
       }
+      if (is_equal(command_help, Add)) { std::cout << "commmand: add [number of student] [last name of student] [date of birth] [academic group]\nWhere 0 < number of student < count of students, last name is string, date of birth is integer, academic group is string\nResult 'Success' say that command work correct. Else you may see error mesage and command will be aborted\n";}
+      if (is_equal(command_help, Get)) { std::cout << "commmand: get [number of student]\nWhere 0 < number of student < count of students\n";}
+      if (is_equal(command_help, Edit)) { std::cout << "commmand: edit [number of student]\nWhere 0 < number of student < count of students\n";}
+      if (is_equal(command_help, Exit)) { std::cout << "commmand: exit\n Abort program\n";}
+      
+      continue;
     }
-  }
 
-  char f_let;
-  std::cout << "Type letter:\n";
-  std::cin >> f_let;
-
-  for (size_t curr = 0; curr < n; ++curr) {
-    if (our_group[curr].surname[0] == f_let
-     && our_group[curr].is_extent_student()) {
-      std::cout << "Great student whith surname started with letter '" << f_let << "': " << our_group[curr] << std::endl;
-      no_one_grade_student_with_letter = false;
+    if (is_equal(command, Add)) {
+      // std::cout << "Choose which student you want to add (enter number of student)\n";
+      size_t student = true_input(0);
+      if (student > n) {
+        std::cout << "We can`t make this operation with this student";
+        continue;
+      }
+      std::cout << "Write student №" << student << " last name, date of birth and academic group:\n";
+      std::cin >> our_group[student - 1];
+      std::cout << "Success! Student " << student << " was add\n"; // << our_group[student - 1] << std::endl;
+      continue;
     }
-    no_one_grade_student = !our_group[curr].is_extent_student() && no_one_grade_student;
+
+    if (is_equal(command, Get)) {
+      // std::cout << "Get\n";
+      size_t student = true_input(0);
+      if (student > n) {
+        std::cout << "We can`t make this operation with this student\n";
+        continue;
+      }
+      our_group[student - 1].is_extent_student();
+      std::cout << our_group[student - 1] << std::endl;
+      continue;
+    }
+
+    if (is_equal(command, Edit)) {
+
+      size_t student = true_input(0);
+
+      if (student > n) {
+        std::cout << "We can`t make this operation with this student\n";
+        continue;
+      }
+      
+      for (size_t i = 0; i < 4; i++)
+      {
+        std::cout << "Write count of grades in " << subjects[i] << ": ";
+        size_t count_of_grades = true_input();
+        for (size_t curr_grade = 0; curr_grade < count_of_grades; ++curr_grade) {
+          our_group[student - 1].grades[i][our_group[student - 1].last[i]++] = true_input();
+        }
+      }
+      our_group[student - 1].is_extent_student();
+      std::cout << "Success\n";
+      continue;
+    }
+
+    if (is_equal(command, Task)) {
+      // check all students was initialize?
+
+      char f_let;
+      // std::cout << "Type letter:\n";
+      std::cin >> f_let;
+
+      for (size_t curr = 0; curr < n; ++curr) {
+        if (our_group[curr].surname[0] == f_let
+        && our_group[curr].is_extent_student()) {
+          std::cout << "Great student whith surname started with letter '" << f_let << "': " << our_group[curr] << std::endl;
+          no_one_grade_student_with_letter = false;
+        }
+        no_one_grade_student = !our_group[curr].is_extent_student() && no_one_grade_student;
+      }
+
+      std::cout << std::endl;
+
+      if (no_one_grade_student) {
+        std::cout << "No one grade student in all group!!!\n";
+        continue;;
+      }
+
+      if (no_one_grade_student_with_letter && !no_one_grade_student) {
+        std::cout << "No one grade student with this letter!!!\n";
+        continue;;
+      }
+      continue;
+    }
+
+    if (is_equal(command, Exit)) {
+      std::cout << "Bye-bye!\n";
+      return 0;
+    }
+    std::cout << "Command was not recognised\n";
   }
 
-  std::cout << std::endl;
+  //-------------------------------------------------------------------------------------------
+  // for (size_t curr = 0; curr < n; ++curr) {
+  //   std::cout << "Write student №" << curr + 1 << " last name, initials, date of birth and academic group:\n";
 
-  if (no_one_grade_student) {
-    std::cout << "No one grade student in all!!!\n";
-    return 0;
-  }
+  //   std::cin >> our_group[curr];
+    
+  //   for (size_t i = 0; i < 4; i++)
+  //   {
+  //     std::cout << "Write count of grades in " << subjects[i] << ": ";
+  //     size_t count_of_grades = true_input();
+  //     for (size_t curr_grade = 0; curr_grade < count_of_grades; ++curr_grade) {
+  //       our_group[curr].grades[i][our_group[curr].last[i]++] = true_input();
+  //     }
+  //   }
+  // }
 
-  if (no_one_grade_student_with_letter && !no_one_grade_student) {
-    std::cout << "No one grade student with this letter!!!\n";
-    return 0;
-  }
+    // char f_let;
+    // std::cout << "Type letter:\n";
+    // std::cin >> f_let;
+
+    // for (size_t curr = 0; curr < n; ++curr) {
+    //   if (our_group[curr].surname[0] == f_let
+    //   && our_group[curr].is_extent_student()) {
+    //     std::cout << "Great student whith surname started with letter '" << f_let << "': " << our_group[curr] << std::endl;
+    //     no_one_grade_student_with_letter = false;
+    //   }
+    //   no_one_grade_student = !our_group[curr].is_extent_student() && no_one_grade_student;
+    // }
+
+    // std::cout << std::endl;
+
+    // if (no_one_grade_student) {
+    //   std::cout << "No one grade student in all!!!\n";
+    //   return 0;
+    // }
+
+    // if (no_one_grade_student_with_letter && !no_one_grade_student) {
+    //   std::cout << "No one grade student with this letter!!!\n";
+    //   return 0;
+    // }
 
   /* ---For-debugging--- */
   // std::cout << "All students:\n";
