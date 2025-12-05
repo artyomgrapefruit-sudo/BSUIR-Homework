@@ -10,4 +10,10 @@ All my homeworks
 | Основы инфокоммуникационных технологий   | Fundamentals of Infocommunication Technologies   | FIT          |
 ### Second semester:
 
-## Something about struct of repo:
+
+B
+B
+A
+D
+C
+## Something about struct of repoi:
