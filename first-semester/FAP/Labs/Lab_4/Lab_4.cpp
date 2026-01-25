@@ -29,7 +29,7 @@ double Difference (double x, double n) {
   return (s > y) ? (s - y) : (y - s);
 }
 
-void Out_Rez (double mem (double, double), double a, double b, double h, double n) {
+void Out_Rez (double (*mem) (double, double), double a, double b, double h, double n) {
   double ans, x = a;
   
   while (x < b) {
@@ -39,12 +39,37 @@ void Out_Rez (double mem (double, double), double a, double b, double h, double 
   }
 }
 
+double true_input () {
+  char* input = new char[255];
+  bool is_number;
+  do {
+    std::cin >> input;
+    is_number = true;
+    size_t curr = 0;
+    for (;input[curr] != '\0'; ++curr) {
+      if ((input[curr] > '9' || input[curr] < '0') && input[curr] != '.') {
+        std::cout << "Incorrect data!\nTry again:\n";
+        is_number = false;
+        break;
+      }
+    }
+  } while (!is_number);
+
+  return std::stod(input);
+}
+
 int main () {
   double difference, a, b, h, n, x, y, s, power;
   int choose, after_point = 5;
 
-  std::cout << "Input a, b, h, n" << std::endl;
-  std::cin >> a >> b >> h >> n;
+  std::cout << "Input a" << std::endl;
+  a = true_input();
+  std::cout << "Input b" << std::endl;
+  b = true_input();
+  std::cout << "Input h" << std::endl;
+  h = true_input();
+  std::cout << "Input n" << std::endl;
+  n = true_input();
 
   std::cout << std::setprecision(after_point);
   power = pow(10, after_point);
@@ -58,15 +83,15 @@ int main () {
     switch (choose)
     {
     case 1:
-      Out_Rez(Y, a, b, h, n);
+      Out_Rez(&Y, a, b, h, n);
       break;
     
     case 2:
-      Out_Rez(S, a, b, h, n);
+      Out_Rez(&S, a, b, h, n);
       break;
     
     case 3:
-      Out_Rez(Difference, a, b, h, n);
+      Out_Rez(&Difference, a, b, h, n);
       break;
     
     case 4:

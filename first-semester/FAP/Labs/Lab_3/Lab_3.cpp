@@ -1,3 +1,5 @@
+// pow by myself?
+
 #include <cmath>
 #include <iostream>
 #include <iomanip>
@@ -9,12 +11,37 @@ double fact (double num) {
   return num * fact(num - 1);
 }
 
+int true_input () {
+  char* input = new char[255];
+  bool is_number;
+  do {
+    std::cin >> input;
+    is_number = true;
+    size_t curr = 0;
+    for (;input[curr] != '\0'; ++curr) {
+      if ((input[curr] > '9' || input[curr] < '0' || (curr == 0 && input[curr] == '0')) && input[curr] != '.') {
+        std::cout << "Incorrect data!\nTry again:\n";
+        is_number = false;
+        break;
+      }
+    }
+  } while (!is_number);
+
+  return std::stoi(input);
+}
+
 int main () {
   double difference, a, b, h, n, x, y, s, power;
   int after_point = 5;
 
-  std::cout << "Input a, b, h, n" << std::endl;
-  std::cin >> a >> b >> h >> n;
+  std::cout << "Input a" << std::endl;
+  a = true_input();
+  std::cout << "Input b" << std::endl;
+  b = true_input();
+  std::cout << "Input h" << std::endl;
+  h = true_input();
+  std::cout << "Input n" << std::endl;
+  n = true_input();
 
   std::string tab = std::string(after_point + 5, ' ');
   std::cout << "\tx" << tab << "y" << tab << "s" << tab << "difference" << std::endl;

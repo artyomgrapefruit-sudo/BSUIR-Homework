@@ -11,7 +11,26 @@
 */
 
 #include <iostream>
-#include <vector>
+
+int true_input () {
+  char* input = new char[255];
+  bool is_number;
+
+  do {
+    std::cin >> input;
+    is_number = true;
+    size_t curr = 0;
+    for (;input[curr] != '\0'; ++curr) {
+      if (input[curr] > '9' || input[curr] < '0' || (curr == 0 && input[curr] == '0')) {
+        std::cout << "Incorrect data!\nTry again:\n";
+        is_number = false;
+        break;
+      }
+    }
+  } while (!is_number);
+
+  return std::stoi(input);
+}
 
 int main()
 {
@@ -20,10 +39,11 @@ int main()
   bool flag = true;
 
   std::cout << "Wrute size of matrix:\n";
-  std::cin >> n >> m;
+  n = true_input();
+  m = true_input();
 
-  int64_t input_array[n][m];
-  int32_t B[n];
+  int64_t** input_array = new int64_t*[n]{new int64_t[m]};
+  int32_t* B = new int32_t[n];
 
   std::cout << "Input matrix:\n";
 
@@ -33,7 +53,7 @@ int main()
     max = input_array[i][0];
     for (size_t j = 0; j < m; ++j)
     {
-      std::cin >> input_array[i][j];
+      input_array[i][j] = true_input();
       if(input_array[i][j] >= max) {
         B[i] = 0;
       }
@@ -44,14 +64,7 @@ int main()
   for (size_t i = 0; i < n; ++i)
   {
     std::cout << B[i] << "    ";
-    // for (size_t j = 0; j < m; ++j)
-    // {
-    //   std::cout << input_array[i][j] << " ";
-    // }
-    // std::cout << std::endl;  
   }
-
-  
   
   return 0;
 }

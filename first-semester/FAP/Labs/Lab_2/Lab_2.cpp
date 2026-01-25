@@ -1,27 +1,28 @@
 #include <iostream>
 #include <cmath>
 
-int main() {
-  double z, x, fi = 0, answer, a = 1;
-  // char* input = new char[255];
-  std::string input;
+double true_input () {
+  char* input = new char[255];
   bool is_number;
-
   do {
-    is_number = true;
-    std::cout << "Enter number" << std::endl;
     std::cin >> input;
-    for (int curr = 0; curr < input.length(); ++curr) {
-      char curr_s = input[curr];
-      if ( curr_s > '9' || curr_s < '0' && curr_s != '.') {
-        std::cout << "Your answer incorrect, please try again" << std::endl;
+    is_number = true;
+    size_t curr = 0;
+    for (;input[curr] != '\0'; ++curr) {
+      if ((input[curr] > '9' || input[curr] < '0') && input[curr] != '.') {
+        std::cout << "Incorrect data!\nTry again:\n";
         is_number = false;
         break;
       }
     }
   } while (!is_number);
 
-  z = std::stod(input);
+  return std::stod(input);
+}
+
+int main() {
+  double z, x, fi = 0, answer, a = 1;
+  z = true_input();
 
   if(z < 1) {
     x = powf(z, 2);

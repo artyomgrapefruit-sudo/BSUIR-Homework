@@ -2,25 +2,27 @@
 #include <iostream>
 #include <string>
 
-int main() {
-  std::string input;
+double true_input () {
+  char* input = new char[255];
   bool is_number;
-
   do {
-    is_number = true;
-    std::cout << "Enter number" << std::endl;
     std::cin >> input;
-    for (int curr = 0; curr < input.length(); ++curr) {
-      char curr_s = input[curr];
-      if ( curr_s > '9' || curr_s < '0' && curr_s != '.') {
-        std::cout << "Your answer incorrect, please try again" << std::endl;
+    is_number = true;
+    size_t curr = 0;
+    for (;input[curr] != '\0'; ++curr) {
+      if ((input[curr] > '9' || input[curr] < '0' || (curr == 0 && input[curr] == '0')) && input[curr] != '.') {
+        std::cout << "Incorrect data!\nTry again:\n";
         is_number = false;
         break;
       }
     }
   } while (!is_number);
 
-  double alpha = stod(input);
+  return std::stod(input);
+}
+
+int main() {
+  double alpha = true_input();
 
   double numerator = sin(2*alpha) + sin(5*alpha) - sin(3*alpha);
   double denominator = cos(alpha) + 1 - 2*pow( sin(2*alpha), 2);

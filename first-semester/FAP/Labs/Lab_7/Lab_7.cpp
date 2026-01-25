@@ -6,14 +6,13 @@
 */
 
 #include <iostream>
-#include <vector>
 
 int main () {
-	size_t distance[255] = {0};
-	int64_t key[255] = {-1};
+	size_t* distance = new size_t[255]{0};
+	int64_t* key = new int64_t[255]{-1};
 	key[0] = 0;
 	size_t last = 0;
-	char str[255] = {'\0'};
+	char* str = new char[255]{'\0'};
 	bool is_number = true;
 
 	do {
