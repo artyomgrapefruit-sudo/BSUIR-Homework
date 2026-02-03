@@ -49,7 +49,7 @@ sudo apt install git-all
 
 ### Создай fork оригинального репозитория
 
-На сайте проекта, немного правее назввания нажми на кнопку fork
+На сайте проекта, немного правее назввания нажми на кнопку [fork](<https://github.com/artyomgrapefruit-sudo/BSUIR-Homework/fork>) 
 
 ### Клонируй fork на свой ПК
 ```bash
