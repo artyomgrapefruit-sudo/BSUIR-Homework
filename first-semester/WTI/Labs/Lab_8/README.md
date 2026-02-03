@@ -1,1 +1,0 @@
-# For this task i was use vs code extension "Live Server" or LAMP, cause I use Linux btw

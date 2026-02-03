@@ -1,0 +1,41 @@
+body {
+  display: flex;
+}
+
+main {
+  width: auto;
+}
+
+.imgs {
+  background-image: url("barbara.jpg");
+  filter: url("barbara.jpg");
+  background-size: cover;
+  width: 12em;
+  height: 12em;
+  margin: 1em;
+  display: inline-block;
+}
+
+#grayscale {
+  filter: grayscale();
+}
+
+#saturate {
+  filter: saturate(50%);
+}
+
+#invert {
+  filter: invert();
+}
+
+#sepia {
+  filter: sepia();
+}
+
+#hue-rotate {
+  filter: hue-rotate(90deg);
+}
+
+#contrast {
+  filter: contrast(50%);
+}

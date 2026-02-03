@@ -1,0 +1,29 @@
+
+.header {
+  border: 1px solid grey;
+  height: 20vh;
+  width: 100%;
+}
+
+.section {
+  display: flex;
+  height: 60vh;
+}
+
+.aside {
+  border: 1px solid grey;
+  width: 15%;
+}
+
+.article {
+  border: 1px solid grey;
+  width: 85%;
+}
+
+.footer {
+  border: 1px solid grey;
+  height: 17vh;
+  width: 100%;
+}
+
+/* https://developer.mozilla.org/ru/docs/Learn_web_development/Core/Styling_basics/Sizing */

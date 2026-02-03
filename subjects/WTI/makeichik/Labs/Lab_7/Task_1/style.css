@@ -1,0 +1,366 @@
+body {
+    background-color:floralwhite;
+    margin: 0;
+    font-family: Andale Mono;
+}
+
+nav {
+    background-color: burlywood;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.nav_img {
+    max-height: 10vh;
+    max-width: 100vw;
+    list-style: none;
+}
+
+.nav_list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: large;
+    border-radius: 50%;
+}
+
+.list_text {
+    width: 23vw;
+    max-width: 25vw;
+
+    display: block;
+    padding: 8px 8px;
+    
+    background-color:burlywood;
+    
+    color: rgb(206, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: large;
+}
+
+.list_text:hover {
+    color: brown;
+}
+
+.list_point:hover > .sublist{
+    display: block;
+}
+
+.sublist {
+    display: none;
+
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+.sublist_text {
+    display: block;
+    padding: 8px 16px;
+    
+    background-color: rgb(254, 220, 175);
+    
+    color: rgb(206, 0, 0);
+    text-decoration: none;
+}
+
+.sublist_text:hover {
+    color: brown;
+}
+
+.showcase {
+    display: grid;
+}
+
+.showcase > a {
+    text-align: center;
+    font-style: italic;
+    font-size: x-large;
+    color: rgb(206, 0, 0);
+}
+
+.showcase_image {
+    max-width: 33vw;
+}
+
+.benefits {
+    padding-left: 10px;
+}
+
+.benefits > p {
+    font-size: 1rem;
+}
+
+#showcase_collection {
+    display: flex;
+    justify-content: center;
+}
+
+#bash_newsletter {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}
+
+#newsletter {
+    margin: 1px;
+}
+
+.newsletter {
+    padding: 18px;
+    background-color: rgb(254, 220, 175);
+    border-radius: 14px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newsletter_title {
+    margin: 0 0 8px 0;
+    color: rgb(206, 0, 0);
+}
+
+.newsletter_text {
+    margin: 0 0 12px 0;
+}
+
+.newsletter_form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.newsletter_input {
+    flex: 1;
+    min-width: 220px;
+    padding: 10px 12px;
+    border: 1px solid rgba(206, 0, 0, 0.35);
+    border-radius: 10px;
+    outline: none;
+}
+
+.newsletter_input:focus {
+    border-color: rgb(206, 0, 0);
+}
+
+.newsletter_btn {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 10px;
+    background-color: burlywood;
+    color: rgb(206, 0, 0);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.newsletter_btn:hover {
+    color: brown;
+}
+
+.newsletter_note {
+    display: block;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+
+.footer {
+    background-color: burlywood;
+    padding: 14px 12px;
+    margin-top: 18px;
+    text-align: center;
+}
+
+.footer_title {
+    margin: 0;
+    font-weight: bold;
+    color: rgb(206, 0, 0);
+}
+
+.footer_text {
+    margin: 6px 0 10px 0;
+}
+
+.footer_links {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.footer_link {
+    color: rgb(206, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer_link:hover {
+    color: brown;
+}
+
+.to_top {
+    position: fixed;
+    right: 14px;
+    bottom: 14px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgb(254, 220, 175);
+    color: rgb(206, 0, 0);
+    text-decoration: none;
+
+    display: grid;
+    place-items: center;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    font-weight: bold;
+}
+
+.to_top:hover {
+    color: brown;
+}
+
+:root{
+  --text: #2b2b2b;
+  --muted: rgba(0,0,0,.65);
+  --accent: rgb(206, 0, 0);
+  --paper: floralwhite;
+  --card: rgb(254, 220, 175);
+}
+
+body{
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* Универсальная типографика для длинного текста */
+.prose{
+  font-size: 1rem;
+}
+
+/* Вертикальный ритм */
+.prose > *{
+  margin: 0 0 1em 0;
+}
+
+/* Заголовки */
+.prose h1, .prose h2, .prose h3{
+  line-height: 1.25;
+  color: var(--accent);
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.prose h1{ font-size: clamp(1.6rem, 2.6vw, 2.2rem); }
+.prose h2{ font-size: clamp(1.25rem, 2.0vw, 1.6rem); }
+.prose h3{ font-size: 1.15rem; }
+
+.prose .lead{
+  font-size: 1.05rem;
+  color: var(--muted);
+}
+
+.prose p{
+  text-indent: 1.25em;
+}
+
+.prose ul, .prose ol{
+  padding-left: 1.25em;
+}
+.prose li{
+  margin: 0.35em 0;
+}
+
+.prose a{
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+.prose a:hover{
+  color: brown;
+}
+
+.prose blockquote{
+  margin: 1.1em 0;
+  padding: 12px 14px;
+  background: var(--card);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  color: rgba(0,0,0,.75);
+}
+
+@media screen and (max-width: 600px) {
+    .newsletter {
+        margin: 18px 10px;
+        padding: 14px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #showcase_collection {
+        display: grid;
+    }
+
+    .showcase {
+        justify-content: center;
+    }
+
+    .showcase_image {
+        max-width: 90vw;
+    }
+
+    .benefits > p {
+        font-size: 4vw;
+    }
+}   
+
+
+/* AI-animated */
+.scroll_progress{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0%;
+    background-color: rgb(206, 0, 0);
+    z-index: 9999;
+}
+
+/* Плавное появление при скролле */
+.reveal{
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.reveal--visible{
+    opacity: 1;
+    transform: none;
+}
+
+/* Кнопка “наверх” — скрыта, пока не проскроллили */
+.to_top{
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity .2s ease, transform .2s ease;
+}
+.to_top.to_top--visible{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.list_text.active{
+    text-decoration: underline;
+}
+
+.showcase{
+    will-change: transform;
+    transform-style: preserve-3d;
+}

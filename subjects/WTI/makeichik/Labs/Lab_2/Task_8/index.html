@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Task_8</title>
+    <style>
+      input.about {
+        height: 50px;
+        width: 200px;
+      }
+      input.submit, input.reset {
+        border: none;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <h1>Запись на курсы</h1>
+    <hr>
+    <form action="mailto:artyomartyommenko@gmail.com" method="post" enctype="text/plain" target="_blank">
+      <a>Имя</a> <br>
+      <input type="text" name="name" placeholder="Екатерина"> <br> <br>
+      <a>Язык программирования</a> <br>
+      <input type="radio" name="lang"> C++ <br>
+      <input type="radio" name="lang"> PHP <br>
+      <input type="radio" name="lang" checked="true"> Java <br> <br>
+      <a>Дополнительная информация:</a> <br>
+      <input class="about" type="text" name="about" height="50"> <br> <br>
+      <a>Секретное слово</a> <br>
+      <input type="password" name="secret_word"> <br>
+      <input class="submit" type="submit" name="submit" value="Отправить"></input>
+      <input class="reset" type="reset" name="reset" value="Очистить"></input>
+    </form>
+    <hr>
+    <a><i>www.bsuir.by</i></a>
+  </body>
+</html>

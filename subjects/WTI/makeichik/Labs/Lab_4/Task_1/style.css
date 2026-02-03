@@ -1,0 +1,23 @@
+body {
+  display: grid;
+}
+
+
+textarea {
+  width: 10vw;
+  margin: 5px;
+}
+
+.none {
+  resize: none;
+}
+
+.horizontal {
+  resize: horizontal;
+  overflow: auto;
+}
+
+.vertical {
+  resize: vertical;
+  overflow: auto;
+}

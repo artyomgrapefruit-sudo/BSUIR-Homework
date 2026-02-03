@@ -1,0 +1,17 @@
+body {
+  width: 200px;
+  font-size: 12px;
+}
+
+p {
+  white-space: nowrap; 
+  width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 1px solid #000000;
+}
+
+p:hover {
+  overflow: visible;
+  height: auto;
+}
